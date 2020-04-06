@@ -46,33 +46,28 @@ app.post('/login',passport.authenticate('local',{
 app.get('/sign-up',checkNotAuthenticated,function(req,res){ 
     res.render("sign-up")
 })
-app.post('/sign-up',checkNotAuthenticated,async function(req,res){
-    try{
-        model.find({Email:req.body.Email})
-            .then(function(user){
-                if(user.Email==user1.Email || user.Name == user1.Name || user.Number == user1.Number){
+app.post('/sign-up',checkNotAuthenticated,function(req,res,next){  
+            var mail = req.body.Email
+            model.findOne({Email:mail},function(err,model){
+                if(model){
+                    console.log("This Email is saved alredy")
+                    req.flash('error','This Email already exist')
                     res.redirect('/sign-up')
-                }
-            })
-            const hashedPassword = await bcrypt.hash(req.body.Password, 10)
-            user1.Name = req.body.Name
-            user1.Number = req.body.Number
-            user1.Email = req.body.Email
-            user1.Password = hashedPassword        
-            res.redirect('/login')
-    
-    }catch{
-        res.redirect('/sign-up')
-    }
-    user1.save(function(err,user){
-        if(err){
-            console.log("err")
-        }
-        else{
-            console.log("saved")
-        }
-    })
+                }else{
+                    const hashedPassword = bcrypt.hash(req.body.Password, 10)
+                    user1.Name = req.body.Name
+                    user1.Number = req.body.Number
+                    user1.Email = req.body.Email
+                    user1.Password = hashedPassword  
+                    user1.save(function(err, user) {
+                        if(err){console.log(err)}
+                        console.log("New user created")      
+                    res.redirect('/login')
+                })
+            }
+        })
 })
+    
 function checkAuthenticated(req, res, next){
     if(req.isAuthenticated()) {
         return next()

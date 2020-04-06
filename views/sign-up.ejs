@@ -32,6 +32,9 @@
 </nav>
 <div class="jumbotron">
     <h2 style="text-align:center;">Sign-up</h2>
+    <% if(messages.error) {%>
+        <%=messages.error %>
+      <%}%> 
         <form action="/sign-up" method="POST">
         <div class="form-group">
             <label for="Name">Name</label>
