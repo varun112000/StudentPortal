@@ -1,0 +1,50 @@
+<%- include("partials/header") %>
+<title>Login</title>
+<%- include("partials/middle") %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Chandra Pharmacy</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+        <li class="nav-item ">
+            <a class="nav-link " href="/">Home </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">About  </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Contacts  </a>
+        </li>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        <li class="nav-item">
+            <a class="nav-link " href="/sign-up" target="_parent">  Sign-up</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" >  Login<span class="sr-only">(current)</span></a>
+        </li>
+    </ul>
+</div>
+</nav>
+<div class="jumbotron">
+    <h2 style="text-align:center;">Login</h2>
+    <form action="/login" method="POST">
+      <% if(messages.error) {%>
+        <%=messages.error %>
+      <%}%>
+      <div> 
+      <label for="Email">Email address</label>
+      <input type="email" class="form-control" id="Email1" name="email" placeholder="Enter email" required>
+      </div>
+      <div class="form-group">
+      <label for="Password">Password</label>
+      <input type="password" class="form-control" id="Password1" name="password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </form>   
+</div>
+<%- include("partials/footer") %>
