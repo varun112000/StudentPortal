@@ -39,15 +39,13 @@ app.get('/',checkAuthenticated,function(req,res){
                 next()
             }
             return res.render("admin",{models:user})
-            res.end()
+            res.next()
         })
     }else{
         return res.render("index",{Name:req.user.Name})
     }
 })
-app.get('/admin',function(req,res){
-    res.render("admin",{models:model.find({})})
-})
+
 app.get('/login',checkNotAuthenticated,function(req,res){
     res.render("login",)
 })
@@ -97,6 +95,6 @@ app.get('/logout',function(req,res){
         res.redirect('/')
       })
 })
-app.listen(3040,function(){
+app.listen(process.env.PORT || 3040,function(){
     console.log("App Has Been Started")
 })

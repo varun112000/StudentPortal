@@ -21,14 +21,18 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+            <span> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>
             <li class="nav-item">
                 <a class="nav-link" href="/logout" target="_parent">  Logout</a>
             </li>
-    </ul>
+        </ul>
+        <div class=" nav navbar-nav navbar-right" style="float: right;">
+            <ul class="navbar-nav navbar-right">
+            <li class="nav-right">
+                Hello <%=Name%>!
+            </li>
+        </ul>
+    </div>
 </div>
 </nav>
-
-<div style="text-align: right;">
-    <center><h1 >Hello <%=Name%>!</h1></center>
-</div>
 <%- include("partials/footer") %>
